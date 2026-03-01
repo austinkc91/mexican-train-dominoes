@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Mexican Train - Your Hand</title>
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/domino.css">
+  <link rel="stylesheet" href="/css/player.css">
+</head>
+<body>
+  <!-- Waiting for game to start -->
+  <div class="waiting-overlay hidden" id="waitingOverlay">
+    <h2>Ready!</h2>
+    <p>Waiting for game to start...</p>
+  </div>
+
+  <!-- Player header -->
+  <div class="player-header" id="playerHeader">
+    <div class="header-info">
+      <div class="round-badge">Round <span id="roundNum">1</span>/13</div>
+      <div class="turn-indicator waiting" id="turnIndicator">Waiting...</div>
+    </div>
+    <div class="header-stats">
+      <div class="timer-badge" id="timerBadge"></div>
+      <div class="score-badge">Score: <span id="myScore">0</span></div>
+    </div>
+  </div>
+
+  <!-- Double notice -->
+  <div class="double-notice hidden" id="doubleNotice"></div>
+
+  <!-- Train targets -->
+  <div class="train-targets hidden-targets" id="trainTargets"></div>
+
+  <!-- Hand -->
+  <div class="hand-area" id="handArea"></div>
+
+  <!-- Action bar -->
+  <div class="action-bar">
+    <button class="draw-btn" id="drawBtn" disabled>Draw from Boneyard</button>
+    <button class="sort-btn" id="sortBtn">Sort</button>
+    <div class="hand-count"><span id="handCount">0</span> tiles</div>
+  </div>
+
+  <!-- Round end overlay -->
+  <div class="player-overlay hidden" id="roundOverlay">
+    <h2 id="roundOverlayTitle"></h2>
+    <ul class="player-score-list" id="roundScoreList"></ul>
+    <button class="btn-primary btn-large" id="playerNextRoundBtn">Next Round</button>
+  </div>
+
+  <!-- Game over overlay -->
+  <div class="player-overlay hidden" id="gameOverlay">
+    <h2 style="color: gold;">Game Over!</h2>
+    <p id="gameOverWinner" style="font-size: 20px;"></p>
+    <ul class="player-score-list" id="finalScoreList"></ul>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/socket-manager.js"></script>
+  <script src="/js/domino-renderer.js"></script>
+  <script src="/js/player-app.js"></script>
+</body>
+</html>

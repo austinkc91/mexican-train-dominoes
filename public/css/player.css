@@ -1,0 +1,283 @@
+body {
+  background: var(--bg-dark);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Player header */
+.player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  flex-shrink: 0;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.round-badge {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.turn-indicator {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.turn-indicator.your-turn {
+  color: var(--accent);
+  animation: pulse 1.2s ease infinite;
+}
+
+.turn-indicator.waiting {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.header-stats {
+  text-align: right;
+}
+
+.score-badge {
+  font-size: 12px;
+  color: var(--warning);
+}
+
+.timer-badge {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-secondary);
+  min-width: 36px;
+  text-align: center;
+}
+
+.timer-badge.warning {
+  color: var(--accent);
+  animation: pulse 0.5s ease infinite;
+}
+
+/* Train targets area */
+.train-targets {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  min-height: 72px;
+  align-items: center;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.train-targets::-webkit-scrollbar { display: none; }
+
+.train-targets.hidden-targets {
+  min-height: 0;
+  padding: 0;
+}
+
+.train-target {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-card);
+  border: 2px solid var(--bg-surface);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: border-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.train-target.selectable {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.train-target:active {
+  transform: scale(0.95);
+}
+
+.train-target-color {
+  width: 8px;
+  height: 28px;
+  border-radius: 2px;
+}
+
+.train-target-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.train-target-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.train-target-end {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.train-target-marker {
+  font-size: 10px;
+  color: var(--warning);
+}
+
+/* Double notification */
+.double-notice {
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--warning);
+  background: rgba(243, 156, 18, 0.1);
+  border-bottom: 1px solid rgba(243, 156, 18, 0.2);
+  flex-shrink: 0;
+}
+
+/* Hand area */
+.hand-area {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
+  padding: 12px;
+  overflow-y: auto;
+  justify-content: center;
+}
+
+.hand-area .domino {
+  --domino-w: 44px;
+  --domino-h: 82px;
+  touch-action: manipulation;
+}
+
+@media (max-width: 380px) {
+  .hand-area .domino {
+    --domino-w: 38px;
+    --domino-h: 72px;
+  }
+}
+
+/* Action bar */
+.action-bar {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 12px;
+  background: rgba(0,0,0,0.4);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  flex-shrink: 0;
+}
+
+.draw-btn {
+  flex: 1;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.draw-btn.highlighted {
+  background: var(--accent);
+  border-color: var(--accent);
+  animation: pulse 1.5s ease infinite;
+}
+
+.draw-btn:disabled {
+  opacity: 0.3;
+}
+
+.hand-count {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Sort button */
+.sort-btn {
+  padding: 10px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 12px;
+  border-radius: var(--radius-md);
+}
+
+/* Waiting overlay */
+.waiting-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-dark);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.waiting-overlay h2 {
+  font-size: 24px;
+}
+
+.waiting-overlay p {
+  color: var(--text-secondary);
+  animation: pulse 2s ease infinite;
+}
+
+/* Round end on player view */
+.player-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+}
+
+.player-overlay h2 {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.player-score-list {
+  list-style: none;
+  width: 100%;
+  max-width: 300px;
+}
+
+.player-score-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.player-score-list .winner {
+  color: var(--success);
+  font-weight: 700;
+}

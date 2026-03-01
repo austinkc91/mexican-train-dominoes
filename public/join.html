@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Mexican Train Dominoes</title>
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/join.css">
+</head>
+<body>
+  <!-- Join/Create Screen -->
+  <div class="join-container" id="joinScreen">
+    <h1 class="game-title">Mexican Train</h1>
+    <p class="game-subtitle">Dominoes</p>
+
+    <div class="join-card">
+      <div class="input-group">
+        <label for="nameInput">Your Name</label>
+        <input type="text" id="nameInput" placeholder="Enter your name" maxlength="12" autocomplete="off">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-primary btn-large" id="createBtn">Create Game</button>
+      </div>
+
+      <div class="divider">or join existing</div>
+
+      <div class="input-group">
+        <label for="codeInput">Room Code</label>
+        <input type="text" id="codeInput" class="room-code-input" placeholder="ABCD" maxlength="4" autocomplete="off">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-secondary btn-large" id="joinBtn">Join Game</button>
+      </div>
+
+      <div class="error-message" id="errorMsg"></div>
+    </div>
+  </div>
+
+  <!-- Lobby Screen -->
+  <div class="lobby-container hidden" id="lobbyScreen">
+    <h1 class="game-title">Mexican Train</h1>
+    <p class="game-subtitle">Dominoes</p>
+
+    <div class="lobby-card">
+      <div class="lobby-header">
+        <div>
+          <div class="room-code-display" id="lobbyRoomCode"></div>
+          <div class="player-count" id="lobbyPlayerCount"></div>
+        </div>
+      </div>
+
+      <!-- QR code for others to join -->
+      <div class="lobby-qr-section hidden" id="lobbyQrSection">
+        <p class="lobby-qr-label">Scan to join</p>
+        <img class="lobby-qr-img" id="lobbyQrImg" alt="QR Code">
+        <p class="lobby-join-url" id="lobbyJoinUrl"></p>
+      </div>
+
+      <ul class="player-list" id="lobbyPlayerList"></ul>
+
+      <button class="btn-primary btn-large hidden" id="startBtn" style="width:100%">Start Game</button>
+      <a class="tv-view-link hidden" id="tvViewLink" target="_blank">Open TV Board View</a>
+      <p class="waiting-text" id="waitingText">Waiting for host to start...</p>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/socket-manager.js"></script>
+  <script src="/js/join-app.js"></script>
+</body>
+</html>

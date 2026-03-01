@@ -1,0 +1,89 @@
+/* Domino Tile Rendering — SVG-based */
+
+.domino {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid var(--domino-border);
+  border-radius: 6px;
+  width: var(--domino-w, 40px);
+  height: var(--domino-h, 76px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.domino.horizontal {
+  width: var(--domino-h, 76px);
+  height: var(--domino-w, 40px);
+}
+
+.domino.selected {
+  transform: translateY(-8px) scale(1.1);
+  box-shadow: 0 8px 24px rgba(233, 69, 96, 0.5);
+  border-color: var(--accent);
+  z-index: 10;
+}
+
+.domino.playable {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  cursor: pointer;
+}
+
+.domino.dimmed {
+  opacity: 0.4;
+}
+
+.domino.small {
+  --domino-w: 28px;
+  --domino-h: 52px;
+}
+
+.domino.tiny {
+  --domino-w: 20px;
+  --domino-h: 38px;
+}
+
+/* SVG fills the domino container */
+.domino-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Double tile */
+.domino.is-double {
+  border-width: 2px;
+}
+
+/* Player color border */
+.domino[data-player-color] {
+  border-color: var(--player-accent);
+}
+
+/* Engine domino */
+.domino.engine {
+  border: 3px solid gold;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+/* Facedown domino */
+.domino.facedown {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+}
+
+/* Train marker */
+.train-marker {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  position: absolute;
+  animation: pulse 1.5s ease infinite;
+}

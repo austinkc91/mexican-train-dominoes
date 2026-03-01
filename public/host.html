@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mexican Train - Game Board</title>
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/domino.css">
+  <link rel="stylesheet" href="/css/host.css">
+</head>
+<body>
+  <!-- Lobby overlay (shown before game starts) -->
+  <div class="lobby-overlay" id="lobbyOverlay">
+    <h1 class="lobby-title">Mexican Train</h1>
+    <p class="lobby-subtitle">Scan to join</p>
+    <img class="lobby-qr" id="lobbyQr" alt="QR Code">
+    <p class="lobby-url" id="lobbyUrl"></p>
+    <ul class="lobby-players" id="lobbyPlayers"></ul>
+    <p class="player-count" id="lobbyCount"></p>
+    <button class="btn-primary btn-large lobby-start-btn" id="lobbyStartBtn" disabled>Start Game</button>
+  </div>
+
+  <!-- Game header -->
+  <div class="host-header" id="gameHeader">
+    <div class="header-left">
+      <div class="round-info">Round <span id="roundNumber">1</span>/13</div>
+      <div class="engine-label">Engine: Double-<span id="engineValue">12</span></div>
+    </div>
+    <div class="header-right">
+      <div class="boneyard-count">
+        <div class="boneyard-icon"></div>
+        <span id="boneyardCount">0</span>
+      </div>
+      <div class="room-code-badge" id="headerRoomCode"></div>
+      <img class="qr-mini" id="headerQr" alt="QR">
+    </div>
+  </div>
+
+  <!-- Board area with trains -->
+  <div class="board-area" id="boardArea">
+    <div class="turn-banner" id="turnBanner"></div>
+    <div class="turn-timer" id="turnTimer"></div>
+    <div class="move-log" id="moveLog"></div>
+  </div>
+
+  <!-- Player info bar -->
+  <div class="player-bar" id="playerBar"></div>
+
+  <!-- Round end overlay -->
+  <div class="overlay hidden" id="roundEndOverlay">
+    <div class="overlay-title" id="roundEndTitle"></div>
+    <table class="score-table" id="scoreTable"></table>
+    <button class="btn-primary btn-large" id="nextRoundBtn">Next Round</button>
+  </div>
+
+  <!-- Game over overlay -->
+  <div class="overlay hidden" id="gameOverOverlay">
+    <div class="overlay-title" style="color: gold;">Game Over!</div>
+    <div id="winnerAnnouncement" style="font-size:24px; margin:8px 0;"></div>
+    <table class="score-table" id="finalScoreTable"></table>
+    <button class="btn-primary btn-large" id="playAgainBtn">Play Again</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/socket-manager.js"></script>
+  <script src="/js/domino-renderer.js"></script>
+  <script src="/js/train-renderer.js"></script>
+  <script src="/js/host-app.js"></script>
+</body>
+</html>
